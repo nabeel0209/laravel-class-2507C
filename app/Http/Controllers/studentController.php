@@ -52,4 +52,18 @@ class studentController extends Controller
         return redirect('/students');
     }
 
+    public function showFiles()
+    {
+        $files = \Storage::disk('public')->files('uploads');
+        return view('upload', compact('files'));
+    }
+
+
+    public function uploadFile(Request $req)
+    {
+        $req->file('fileInput')->store('uploads', 'public');
+        return redirect('/upload')->with('success', 'File Uploaded');
+    }
+
+
 }

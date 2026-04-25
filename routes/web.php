@@ -23,4 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/students/delete/{id}', [studentController::class, 'deleteStudents']);
 });
 
+Route::get('/upload', [studentController::class, 'showFiles']);
+
+Route::post('/upload', [studentController::class, 'uploadFile']);
+
+
 require __DIR__ . '/auth.php';
