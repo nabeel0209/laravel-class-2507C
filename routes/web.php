@@ -27,5 +27,7 @@ Route::get('/upload', [studentController::class, 'showFiles']);
 
 Route::post('/upload', [studentController::class, 'uploadFile']);
 
+Route::post('upload/delete', [studentController::class, 'deleteFile']);
+
 
 require __DIR__ . '/auth.php';

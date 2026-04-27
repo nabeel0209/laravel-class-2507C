@@ -23,12 +23,12 @@
     </style>
 
     @if (session('success'))
-        <p style="color: 'green'">File Uploaded</p>
+        <p style="color: green">File Uploaded</p>
     @endif
 
     <form action="/upload" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="fileInput">
+        <input type="file" name="fileInput" accept="image/*">
         <button type="submit">Upload</button>
     </form>
 
@@ -36,6 +36,13 @@
 
         @foreach ($files as $file)
             <img src="{{ asset('storage/' . $file) }}">
+
+            <form action="/upload/delete" method="POST">
+                @csrf
+                <input type="text" name="file_path" hidden value="{{ $file }}">
+                <button type="submit">Delete</button>
+            </form>
+
         @endforeach
 
     </div>

@@ -61,9 +61,22 @@ class studentController extends Controller
 
     public function uploadFile(Request $req)
     {
+
+        $req->validate([
+            'fileInput' => 'required|image|max:5000'
+        ]);
+
         $req->file('fileInput')->store('uploads', 'public');
         return redirect('/upload')->with('success', 'File Uploaded');
     }
+
+    public function deleteFile(Request $req) {
+
+    \Storage::disk('public')->delete($req->file_path);
+    return redirect('/upload')->with('success', 'File Deleted');
+
+    }
+
 
 
 }
